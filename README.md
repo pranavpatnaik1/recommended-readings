@@ -1,2 +1,2 @@
-# readingrecom.com
-reading recommendations for AI/ML, math, misc
+# pranav's library
+reading recommendations for AI/ML, math, etc.
