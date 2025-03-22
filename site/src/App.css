@@ -11,7 +11,8 @@
 body {
   line-height: 1.6;
   color: #000;
-  background-color: #fff;
+  background-color: #d7d7d7; /* Adding the warm cream color */
+  background-image: url('/reading-bg.jpg');
   display: flex;
   justify-content: center;
   min-height: 100vh;
@@ -23,13 +24,15 @@ body {
 
 .app {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  background-color: #fff; /* White background for content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.388); /* Subtle shadow for depth */
 }
 
 /* Add global fade-in animation */
@@ -148,7 +151,7 @@ main {
 
 /* Book table section */
 .book-table-section {
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
