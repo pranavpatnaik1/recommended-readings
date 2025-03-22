@@ -441,7 +441,7 @@ function App() {
       )}
 
       <footer className="footer">
-        <p>created by <a href="https://instagram.com/pranavpatnaik_/">@pranavpatnaik_</a>, {new Date().getFullYear()}.</p>
+        <p>created by <a href="https://instagram.com/pranavpatnaik_/" target='_blank'>@pranavpatnaik_</a>, {new Date().getFullYear()}.</p>
       </footer>
     </div>
   );
