@@ -1,0 +1,579 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Markazi+Text:wght@400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter';
+}
+
+body {
+  line-height: 1.6;
+  color: #000;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  /* Add padding-right to compensate for scrollbar disappearance */
+  padding-right: 0;
+  /* Lock scrollbar to always be present */
+  overflow-y: scroll;
+}
+
+.app {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Add global fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  padding: 40px 0 10px;
+  border-bottom: 0px solid #00000046;
+  width: 100%;
+  animation: fadeIn 0.7s ease-out; /* Slightly longer */
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #333333a0;
+}
+
+/* Main content styles */
+main {
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+/* Search section */
+.search-section {
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 700px;
+  animation: fadeIn 0.8s ease-out; /* Slightly longer */
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: white;
+  color: black;
+}
+
+/* Updated notification styling with fade-out animation */
+.notification {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  position: fixed;
+  top: 20%;  /* Position it higher on the screen */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  width: 350px;  /* Fixed width */
+  max-width: 90%;  /* Responsive for very small screens */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Higher z-index to ensure it's above everything */
+  pointer-events: none; /* Prevents it from blocking clicks */
+}
+
+/* Add fade-in and fade-out animations */
+.notification-enter {
+  opacity: 0;
+  animation: notificationFadeIn 0.3s forwards;
+}
+
+.notification-exit {
+  opacity: 1;
+  animation: notificationFadeOut 1s forwards;
+}
+
+@keyframes notificationFadeIn {
+  from { opacity: 0; transform: translate(-50%, -60%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@keyframes notificationFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Book table section */
+.book-table-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  animation: fadeIn 0.9s ease-out; /* Slightly longer */
+}
+
+.book-table-section h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+  min-height: 200px; /* Ensure minimum height */
+}
+
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+  text-align: left;
+  table-layout: fixed; /* Fixed layout to prevent column resizing */
+  animation: fadeUp 1s ease-out; /* Apply fade up to entire table */
+}
+
+.book-table th,
+.book-table td {
+  padding: 12px 15px;
+  border: 1px solid #bcbcbc;
+  word-wrap: break-word; /* Allow word wrapping */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.book-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.book-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-details-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+  margin-left: 5px;
+  flex-shrink: 0;
+  transition: 0.2s;
+}
+
+.view-details-btn:hover {
+  background-color: #d5d5d5;
+}
+
+/* Default column widths for larger screens */
+.book-table th:nth-child(1) { width: 20%; } /* Title */
+.book-table th:nth-child(2) { width: 15%; } /* Author */
+.book-table th:nth-child(3) { width: 20%; } /* Tags */
+.book-table th:nth-child(4) { width: 15%; } /* Submitted By */
+.book-table th:nth-child(5) { width: 30%; } /* Notes */
+
+.book-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.book-table tr:hover {
+  background-color: #f0f0f0;
+}
+
+.book-table tr {
+  animation: none; /* Remove individual row animations */
+}
+
+/* Remove staggered animations for rows */
+.book-table tr:nth-child(1),
+.book-table tr:nth-child(2),
+.book-table tr:nth-child(3),
+.book-table tr:nth-child(4),
+.book-table tr:nth-child(5),
+.book-table tr:nth-child(6),
+.book-table tr:nth-child(7),
+.book-table tr:nth-child(8),
+.book-table tr:nth-child(9),
+.book-table tr:nth-child(10) {
+  animation-delay: 0s;
+}
+
+.no-books {
+  text-align: center;
+  font-style: italic;
+  padding: 20px;
+  animation: none; /* Remove separate animation */
+}
+
+/* Tags styling */
+.tags-cell {
+  padding: 8px 10px !important;
+  line-height: 1.8;
+}
+
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #ffffff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #bcbcbc;
+  border-radius: 10px;
+  padding: 2px 8px;
+  margin: 1px;
+  font-size: 0.85em;
+  white-space: nowrap;
+  animation: fadeIn 0.5s ease-out; /* Keep fade in for tags */
+}
+
+.submitter {
+    color: rgba(0, 0, 0, 0.39);
+    font-size: 13px;
+}
+
+/* Add book section */
+.add-book-section {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 1.1s ease-out; /* Slightly longer */
+}
+
+.add-book-section h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.book-form {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border: 1px solid #000;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #000;
+  border-radius: 0;
+  background-color: white;
+  color: black;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.submit-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  display: block;
+  margin: 0 auto;
+  min-width: 120px;
+}
+
+.submit-button:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+/* Footer styles */
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  border-top: 1px solid #000;
+  font-size: 0.9rem;
+  color: #3333336d;
+  width: 100%;
+  animation: fadeIn 1.2s ease-out; /* Slightly longer */
+}
+
+.footer a {
+  color: #000000be;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards; /* Faster but not too fast */
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 25px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: modalContentFadeIn 0.5s ease-out 0.1s forwards; /* Slightly longer */
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.modal-book-title {
+  font-size: 1.8rem;
+  margin-bottom: 0px;
+}
+
+.modal-book-author {
+  font-size: 1.1rem;
+  font-weight: normal;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.modal-tags-container {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.modal-submitted-by {
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.modal-book-notes h5 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* Add modal-specific animations */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .book-table th,
+  .book-table td {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+  
+  .book-form {
+    padding: 15px;
+  }
+  
+  /* Adjust column widths for smaller screens */
+  .book-table th:nth-child(1) { width: 35%; } /* Title */
+  .book-table th:nth-child(2) { width: 25%; } /* Author */
+  .book-table th:nth-child(5) { width: 40%; } /* Notes */
+}
+
+@media (max-width: 600px) {
+  /* Hide tags and submitted by columns on smaller screens */
+  .responsive-hide-sm {
+    display: none;
+  }
+  
+  /* Adjust remaining column widths */
+  .book-table th:nth-child(1) { width: 40%; } /* Title */
+  .book-table th:nth-child(2) { width: 30%; } /* Author */
+  .book-table th:nth-child(5) { width: 30%; } /* Notes */
+  
+  .book-title {
+    font-size: 0.9rem;
+  }
+  
+  .modal-content {
+    padding: 20px 15px;
+  }
+  
+  .modal-book-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
+  }
+  
+  .book-table th,
+  .book-table td {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .submit-button {
+    width: 100%;
+  }
+  
+  /* Further adjust column widths for very small screens */
+  .book-table th:nth-child(1) { width: 45%; } /* Title */
+  .book-table th:nth-child(2) { width: 25%; } /* Author */
+  .book-table th:nth-child(5) { width: 30%; } /* Notes */
+}
+
+/* Add these new styles for the notes container */
+.notes-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notes-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 5px;
+}
+
+/* Add this to your existing CSS file */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.loading::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  border: 2px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Horizontal rule styling */
+hr {
+  width: 80%;
+  margin: 10px 0 20px;
+  border: none;
+  height: 1px;
+  background-color: #00000030;
+}
