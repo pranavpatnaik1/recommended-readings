@@ -275,7 +275,7 @@ main {
   margin: 1px;
   font-size: 0.85em;
   white-space: nowrap;
-  animation: fadeIn 0.5s ease-out; /* Keep fade in for tags */
+  animation: fadeIn 0.5s ease-out; 
 }
 
 .submitter {
@@ -283,7 +283,6 @@ main {
     font-size: 14px;
 }
 
-/* Add book section */
 .add-book-section {
   width: 100%;
   max-width: 800px;
@@ -291,7 +290,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fadeIn 1.1s ease-out; /* Slightly longer */
+  animation: fadeIn 1.1s ease-out; 
 }
 
 .add-book-section h2 {
@@ -350,7 +349,6 @@ main {
   transform: scale(1.05);
 }
 
-/* Footer styles */
 .footer {
   text-align: center;
   padding: 20px 0;
@@ -359,7 +357,7 @@ main {
   font-size: 0.9rem;
   color: #3333336d;
   width: 100%;
-  animation: fadeIn 1.2s ease-out; /* Slightly longer */
+  animation: fadeIn 1.2s ease-out;
 }
 
 .footer a {
@@ -371,7 +369,6 @@ main {
   text-decoration: underline;
 }
 
-/* Modal styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -385,7 +382,7 @@ main {
   z-index: 1000;
   padding: 20px;
   opacity: 0;
-  animation: fadeIn 0.4s ease-out forwards; /* Faster but not too fast */
+  animation: fadeIn 0.4s ease-out forwards; 
 }
 
 .modal-content {
@@ -400,7 +397,7 @@ main {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   opacity: 0;
   transform: translateY(20px);
-  animation: modalContentFadeIn 0.5s ease-out 0.1s forwards; /* Slightly longer */
+  animation: modalContentFadeIn 0.5s ease-out 0.1s forwards; 
 }
 
 .close-modal {
@@ -444,7 +441,7 @@ main {
   margin-bottom: 8px;
 }
 
-/* Add modal-specific animations */
+
 @keyframes modalFadeIn {
   from {
     opacity: 0;
@@ -465,7 +462,7 @@ main {
   }
 }
 
-/* Responsive styles */
+
 @media (max-width: 768px) {
   .header h1 {
     font-size: 2rem;
@@ -480,14 +477,13 @@ main {
   .book-form {
     padding: 15px;
   }
-  
-  /* Adjust column widths for smaller screens */
-  .book-table th:nth-child(1) { width: 35%; } /* Title */
-  .book-table th:nth-child(2) { width: 25%; } /* Author */
-  .book-table th:nth-child(5) { width: 40%; } /* Notes */
+
+  .book-table th:nth-child(1) { width: 35%; } /* title */
+  .book-table th:nth-child(2) { width: 25%; } /* author */
+  .book-table th:nth-child(5) { width: 40%; } /* notes */
 }
 
-/* Update the mobile breakpoint for smaller screens */
+/* update the mobile breakpoint for smaller screens */
 @media (max-width: 480px) {
   .header h1 {
     font-size: 1.8rem;
@@ -495,29 +491,28 @@ main {
   
   .header p {
     font-size: 1rem;
-    /* Force text wrapping on small screens */
+    /* force text wrapping on small screens */
     display: block;
-    width: 250px; /* Restrict width to force wrapping */
-    margin: 0 auto; /* Center the text */
+    width: 250px; /* restrict width to force wrapping */
+    margin: 0 auto; /* center the text */
     line-height: 1.4;
-    /* Additional properties to ensure wrapping */
+    /* additional properties to ensure wrapping */
     word-break: normal;
     overflow-wrap: break-word;
   }
   
-  /* Other mobile styles... */
 }
 
 @media (max-width: 600px) {
-  /* Hide tags and submitted by columns on smaller screens */
+  /* hide tags and submitted by columns on smaller screens */
   .responsive-hide-sm {
     display: none;
   }
   
-  /* Adjust remaining column widths */
-  .book-table th:nth-child(1) { width: 40%; } /* Title */
-  .book-table th:nth-child(2) { width: 30%; } /* Author */
-  .book-table th:nth-child(5) { width: 30%; } /* Notes */
+  /* adjust remaining column widths */
+  .book-table th:nth-child(1) { width: 40%; } /* yitle */
+  .book-table th:nth-child(2) { width: 30%; } /* author */
+  .book-table th:nth-child(5) { width: 30%; } /* notes */
   
   .book-title {
     font-size: 0.9rem;
@@ -531,29 +526,29 @@ main {
     font-size: 1.5rem;
   }
   
-  /* Improve table readability on mobile */
+  /* improve table readability on mobile */
   .book-table {
-    min-width: unset; /* Remove min-width constraint for small screens */
+    min-width: unset; /* remove min-width constraint for small screens */
     width: 100%;
   }
   
   .book-table th,
   .book-table td {
-    padding: 12px 10px; /* Increase padding for better touch targets */
-    font-size: 0.9rem; /* Slightly larger font */
+    padding: 12px 10px; /* increase padding for better touch targets */
+    font-size: 0.9rem; /* slightly larger font */
   }
   
   .view-details-btn {
-    font-size: 1.1rem; /* Larger button text */
-    padding: 4px 8px; /* Larger touch target */
+    font-size: 1.1rem; /* larger button text */
+    padding: 4px 8px; /* larger touch target */
     margin-left: 8px;
   }
   
   .notes-text {
-    font-size: 0.9rem; /* Slightly larger font for notes */
+    font-size: 0.9rem; /* slightly larger font for notes */
   }
   
-  /* Make the table header more prominent */
+  /* make the table header more prominent */
   .book-table th {
     font-size: 0.95rem;
     font-weight: 600;
@@ -576,19 +571,19 @@ main {
     overflow-wrap: break-word;
   }
   
-  /* Further improve table on very small screens */
+
   .book-table th,
   .book-table td {
-    padding: 12px 8px; /* Keep good padding even on smallest screens */
-    font-size: 0.95rem; /* Even larger font on small screens */
+    padding: 12px 8px; 
+    font-size: 0.95rem; 
   }
   
-  /* Adjust column widths for very small screens */
-  .book-table th:nth-child(1) { width: 45%; } /* Title */
-  .book-table th:nth-child(2) { width: 25%; } /* Author */
-  .book-table th:nth-child(5) { width: 30%; } /* Notes */
+  /* adjust column widths for very small screens */
+  .book-table th:nth-child(1) { width: 45%; } /* title */
+  .book-table th:nth-child(2) { width: 25%; } /* author */
+  .book-table th:nth-child(5) { width: 30%; } /* notes */
   
-  /* Improve the view details button */
+  /* improve the view details button */
   .view-details-btn {
     font-size: 1.2rem;
     padding: 5px 10px;
@@ -599,17 +594,17 @@ main {
   
   .submit-button {
     width: 100%;
-    padding: 15px; /* Larger button */
+    padding: 15px; /* larger button */
     font-size: 1.1rem;
   }
   
-  /* Make the container take full width */
+  /* make the container take full width */
   .book-table-section,
   .table-container {
     width: 100%;
   }
   
-  /* Improve form readability on mobile */
+  /* improve form readability on mobile */
   .form-group label {
     font-size: 1rem;
     margin-bottom: 10px;
@@ -622,7 +617,7 @@ main {
   }
 }
 
-/* Add these new styles for the notes container */
+/* add these new styles for the notes container */
 .notes-container {
   display: flex;
   justify-content: space-between;
@@ -637,7 +632,7 @@ main {
   margin-right: 5px;
 }
 
-/* Add this to your existing CSS file */
+/* add this to your existing CSS file */
 .loading {
   display: flex;
   justify-content: center;
@@ -667,7 +662,7 @@ main {
   }
 }
 
-/* Horizontal rule styling */
+/* horizontal rule styling */
 hr {
   width: 80%;
   margin: 10px 0 20px;
