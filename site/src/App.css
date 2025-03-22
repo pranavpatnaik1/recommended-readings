@@ -63,10 +63,19 @@ body {
   margin-bottom: 8px;
 }
 
+/* Update the header text styling */
 .header p {
   font-size: 1.2rem;
   font-style: italic;
   color: #333333a0;
+  max-width: 100%;
+  white-space: normal;
+  padding-bottom: 5px;
+  word-wrap: break-word;
+  /* Ensure text can wrap and doesn't go offscreen */
+  overflow-wrap: break-word;
+  hyphens: auto;
+  margin: 0 10px; /* Add some margin on the sides */
 }
 
 /* Main content styles */
@@ -108,7 +117,7 @@ main {
   top: 20%;  /* Position it higher on the screen */
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 4px;
+  border-radius: 10px;
   width: 350px;  /* Fixed width */
   max-width: 90%;  /* Responsive for very small screens */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -473,6 +482,27 @@ main {
   .book-table th:nth-child(1) { width: 35%; } /* Title */
   .book-table th:nth-child(2) { width: 25%; } /* Author */
   .book-table th:nth-child(5) { width: 40%; } /* Notes */
+}
+
+/* Update the mobile breakpoint for smaller screens */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
+    /* Force text wrapping on small screens */
+    display: block;
+    width: 250px; /* Restrict width to force wrapping */
+    margin: 0 auto; /* Center the text */
+    line-height: 1.4;
+    /* Additional properties to ensure wrapping */
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  
+  /* Other mobile styles... */
 }
 
 @media (max-width: 600px) {
