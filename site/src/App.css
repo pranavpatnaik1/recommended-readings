@@ -530,6 +530,35 @@ main {
   .modal-book-title {
     font-size: 1.5rem;
   }
+  
+  /* Improve table readability on mobile */
+  .book-table {
+    min-width: unset; /* Remove min-width constraint for small screens */
+    width: 100%;
+  }
+  
+  .book-table th,
+  .book-table td {
+    padding: 12px 10px; /* Increase padding for better touch targets */
+    font-size: 0.9rem; /* Slightly larger font */
+  }
+  
+  .view-details-btn {
+    font-size: 1.1rem; /* Larger button text */
+    padding: 4px 8px; /* Larger touch target */
+    margin-left: 8px;
+  }
+  
+  .notes-text {
+    font-size: 0.9rem; /* Slightly larger font for notes */
+  }
+  
+  /* Make the table header more prominent */
+  .book-table th {
+    font-size: 0.95rem;
+    font-weight: 600;
+    background-color: #f0f0f0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -539,22 +568,58 @@ main {
   
   .header p {
     font-size: 1rem;
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+    line-height: 1.4;
+    word-break: normal;
+    overflow-wrap: break-word;
   }
   
+  /* Further improve table on very small screens */
   .book-table th,
   .book-table td {
-    padding: 6px 8px;
-    font-size: 0.8rem;
+    padding: 12px 8px; /* Keep good padding even on smallest screens */
+    font-size: 0.95rem; /* Even larger font on small screens */
+  }
+  
+  /* Adjust column widths for very small screens */
+  .book-table th:nth-child(1) { width: 45%; } /* Title */
+  .book-table th:nth-child(2) { width: 25%; } /* Author */
+  .book-table th:nth-child(5) { width: 30%; } /* Notes */
+  
+  /* Improve the view details button */
+  .view-details-btn {
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin-left: 5px;
   }
   
   .submit-button {
     width: 100%;
+    padding: 15px; /* Larger button */
+    font-size: 1.1rem;
   }
   
-  /* Further adjust column widths for very small screens */
-  .book-table th:nth-child(1) { width: 45%; } /* Title */
-  .book-table th:nth-child(2) { width: 25%; } /* Author */
-  .book-table th:nth-child(5) { width: 30%; } /* Notes */
+  /* Make the container take full width */
+  .book-table-section,
+  .table-container {
+    width: 100%;
+  }
+  
+  /* Improve form readability on mobile */
+  .form-group label {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 12px 10px;
+    font-size: 1rem;
+  }
 }
 
 /* Add these new styles for the notes container */
