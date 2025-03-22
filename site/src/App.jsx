@@ -3,14 +3,14 @@ import './App.css';
 import { supabase } from './supabaseClient';
 
 function App() {
-  // State for books
+  // state for books
   const [books, setBooks] = useState([]);
-  // Add loading state
+  // add loading state
   const [loading, setLoading] = useState(true);
-  // Add state to track submission status
+  // add state to track submission status
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Form state
+  // form state
   const [newBook, setNewBook] = useState({
     title: '',
     author: '',
@@ -19,21 +19,21 @@ function App() {
     submittedBy: ''
   });
 
-  // Search state
+  // search state
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Notification state
+  // notif state
   const [showNotification, setShowNotification] = useState(false);
   
-  // Modal state for book details
+  // modal state, book details
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
-  // Fetch books from Supabase when component mounts
+  // fetch books from supabase when component mounts
   useEffect(() => {
     fetchBooks();
     
-    // Setup a real-time subscription for changes to the books table
+    // setup real-time subscription for changes to the books table
     const subscription = supabase
       .channel('books-channel')
       .on('postgres_changes', 
@@ -45,19 +45,19 @@ function App() {
       )
       .subscribe();
     
-    // Cleanup subscription on unmount
+    // cleanup subscription on unmount
     return () => {
       supabase.removeChannel(subscription);
     };
   }, []);
 
-  // Function to fetch approved books from Supabase
+  // function to fetch approved books from Supabase
   const fetchBooks = async () => {
     try {
       setLoading(true);
       console.log('Fetching books from Supabase...');
       
-      // First check if we can access any table
+      // first check if we can access any table
       console.log('Testing connection...');
       const { data: testData, error: testError } = await supabase
         .from('books')
@@ -65,7 +65,7 @@ function App() {
       
       console.log('Connection test result:', { testData, testError });
       
-      // If there's an error with the test query, it means the table doesn't exist
+      // if there's an error with the test query, it means the table doesn't exist
       if (testError) {
         if (testError.code === '42P01') { // PostgreSQL code for undefined_table
           console.error('The "books" table does not exist!');
@@ -76,7 +76,7 @@ function App() {
         }
       }
       
-      // Try getting all books regardless of approval status
+      // try getting all books regardless of approval status
       console.log('Fetching all books (without filter)...');
       const { data: allBooks, error: allBooksError } = await supabase
         .from('books')
@@ -91,7 +91,7 @@ function App() {
       } else {
         console.log(`You have ${allBooks.length} total books, but none might be approved.`);
         
-        // Check if the approved column exists
+        // check if approved column exists
         if (allBooks && allBooks.length > 0) {
           const firstBook = allBooks[0];
           console.log('First book structure:', firstBook);
@@ -103,7 +103,7 @@ function App() {
         }
       }
       
-      // Now try the original query with the approval filter
+      // trying original query w the approval filter
       const { data, error } = await supabase
         .from('books')
         .select('*')
@@ -123,7 +123,7 @@ function App() {
       }
     } catch (error) {
       console.error('Error fetching books:', error.message);
-      // Fallback to local sample data if Supabase connection fails
+      // fallback to local sample data if supabase connection fails
       const initialBooks = [
         { id: 1, title: "To Kill a Mockingbird", author: "Harper Lee", genre: "Classic", notes: "A powerful story about racial injustice", submittedBy: "John Doe" },
         { id: 2, title: "1984", author: "George Orwell", genre: "Dystopian", notes: "A cautionary tale about totalitarianism", submittedBy: "Jane Smith" },
@@ -135,7 +135,7 @@ function App() {
     }
   };
 
-  // Handle form input changes
+  // form input change handler
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewBook({
@@ -144,7 +144,7 @@ function App() {
     });
   };
 
-  // Update the handleSubmit function to use our new animation approach
+  // update the handleSubmit function to use new animation
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newBook.title || !newBook.author) {
@@ -155,7 +155,7 @@ function App() {
     try {
       setIsSubmitting(true);
       
-      // Create new book object with approved set to false by default
+      // create new book object with approved set to false by default
       const submission = {
         ...newBook,
         approved: false
@@ -163,7 +163,7 @@ function App() {
       
       console.log('Submitting book:', submission);
       
-      // Insert into Supabase
+      // insert into Supabase
       const { data, error } = await supabase
         .from('books')
         .insert([submission])
@@ -176,20 +176,20 @@ function App() {
       
       console.log('Book submitted successfully:', data);
       
-      // Show notification with fade-in class
+      // show notification with fade-in class
       setShowNotification('notification-enter');
       
-      // After a short delay, add the fade-out class
+      // after a short delay, add the fade-out class
       setTimeout(() => {
         setShowNotification('notification-exit');
         
-        // Then remove the notification completely after animation completes
+        // then remove the notification completely after animation completes
         setTimeout(() => {
           setShowNotification(false);
-        }, 1000); // Match this to the duration of the fade-out animation
-      }, 2000); // Show the notification for 2 seconds before starting fade-out
+        }, 1000); // match this to the duration of the fade-out animation
+      }, 2000); // show the notification for 2 seconds before starting fade-out
       
-      // Reset form
+      // reset form
       setNewBook({
         title: '',
         author: '',
@@ -198,7 +198,7 @@ function App() {
         submittedBy: ''
       });
       
-      // Refresh books list
+      // refresh books list
       fetchBooks();
     } catch (error) {
       console.error('Error submitting book:', error.message);
@@ -208,17 +208,17 @@ function App() {
     }
   };
 
-  // Modal functions
+  // modal functions
   const openBookModal = (book) => {
-    // Get the current width of the body
+    // get the current width of the body
     const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
     
-    // If there's a scrollbar, add padding to keep the content from shifting
+    // if there's a scrollbar, add padding to keep the content from shifting
     if (scrollBarWidth > 0) {
       document.body.style.paddingRight = `${scrollBarWidth}px`;
     }
     
-    // Disable scrolling but in a way that doesn't cause layout shift
+    // disable scrolling but in a way that doesn't cause layout shift
     document.body.style.overflow = 'hidden';
     
     // Set state for the modal
@@ -227,17 +227,17 @@ function App() {
   };
 
   const closeBookModal = () => {
-    // Reset the padding
+    // reset the padding
     document.body.style.paddingRight = '0';
     
-    // Re-enable scrolling
+    // re-enable scrolling
     document.body.style.overflow = 'auto';
     
-    // Close the modal
+    // close the modal
     setModalOpen(false);
   };
 
-  // Filter books based on search term
+  // filter books based on search term
   const filteredBooks = books.filter(book => 
     book.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     book.author?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -408,7 +408,7 @@ function App() {
         </section>
       </main>
 
-      {/* Book Details Modal */}
+      {/* book details modal */}
       {modalOpen && selectedBook && (
         <div className="modal-overlay" onClick={closeBookModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -417,7 +417,7 @@ function App() {
               <h3 className="modal-book-title">{selectedBook.title}</h3>
               <h4 className="modal-book-author">by {selectedBook.author}</h4>
               
-              {/* Show tags in modal (visible on all screen sizes) */}
+              {/* show tags in modal (visible on all screen sizes) */}
               <div className="modal-tags-container">
                 {selectedBook.genre?.split(',').map((tag, index) => 
                   tag.trim() && (
@@ -428,7 +428,7 @@ function App() {
                 )}
               </div>
               
-              {/* Show submitted by in modal (visible on all screen sizes) */}
+              {/* show submitted by in modal (visible on all screen sizes) */}
               <p className="modal-submitted-by">submitted by: {selectedBook.submittedBy}</p>
               
               <div className="modal-book-notes">
