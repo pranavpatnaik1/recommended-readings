@@ -1,2 +1,2 @@
-# readingrecom.com
-reading recommendations for AI/ML, math, misc
+# recommended readings
+reading recommendations for AI/ML, math, etc.
