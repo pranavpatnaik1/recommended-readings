@@ -490,22 +490,27 @@ main {
 /* Update the mobile breakpoint for smaller screens */
 @media (max-width: 480px) {
   .header h1 {
-    font-size: 1.8rem;
+    font-size: 2.4rem; /* Even larger on the smallest screens */
+    line-height: 1.1; /* Tighten line height for better appearance */
+    margin-bottom: 15px; /* More space below title */
   }
   
   .header p {
     font-size: 1rem;
-    /* Force text wrapping on small screens */
     display: block;
-    width: 250px; /* Restrict width to force wrapping */
-    margin: 0 auto; /* Center the text */
+    width: 250px;
+    margin: 5px auto 10px; /* Add more space around the subtitle */
     line-height: 1.4;
-    /* Additional properties to ensure wrapping */
     word-break: normal;
     overflow-wrap: break-word;
   }
   
-  /* Other mobile styles... */
+  /* Adjust header padding to accommodate larger text */
+  .header {
+    padding: 30px 0 15px;
+  }
+  
+  /* Rest of your mobile styles... */
 }
 
 @media (max-width: 600px) {
@@ -559,66 +564,26 @@ main {
     font-weight: 600;
     background-color: #f0f0f0;
   }
-}
-
-@media (max-width: 480px) {
+  
+  /* Other styles remain the same... */
+  
+  /* Make the header title larger on mobile */
   .header h1 {
-    font-size: 1.8rem;
+    font-size: 2.2rem; /* Increased from 1.8rem */
+    margin-bottom: 12px; /* Add more space below the title */
+    letter-spacing: -0.5px; /* Slight letter spacing adjustment for better readability */
   }
   
   .header p {
     font-size: 1rem;
+    /* Force text wrapping on small screens */
     display: block;
-    width: 250px;
-    margin: 0 auto;
+    width: 250px; /* Restrict width to force wrapping */
+    margin: 0 auto; /* Center the text */
     line-height: 1.4;
+    /* Additional properties to ensure wrapping */
     word-break: normal;
     overflow-wrap: break-word;
-  }
-  
-  /* Further improve table on very small screens */
-  .book-table th,
-  .book-table td {
-    padding: 12px 8px; /* Keep good padding even on smallest screens */
-    font-size: 0.95rem; /* Even larger font on small screens */
-  }
-  
-  /* Adjust column widths for very small screens */
-  .book-table th:nth-child(1) { width: 45%; } /* Title */
-  .book-table th:nth-child(2) { width: 25%; } /* Author */
-  .book-table th:nth-child(5) { width: 30%; } /* Notes */
-  
-  /* Improve the view details button */
-  .view-details-btn {
-    font-size: 1.2rem;
-    padding: 5px 10px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    margin-left: 5px;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 15px; /* Larger button */
-    font-size: 1.1rem;
-  }
-  
-  /* Make the container take full width */
-  .book-table-section,
-  .table-container {
-    width: 100%;
-  }
-  
-  /* Improve form readability on mobile */
-  .form-group label {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  
-  .form-group input,
-  .form-group textarea {
-    padding: 12px 10px;
-    font-size: 1rem;
   }
 }
 
