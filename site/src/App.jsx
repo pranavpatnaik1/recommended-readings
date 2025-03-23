@@ -3,6 +3,7 @@ import './App.css';
 import { supabase } from './supabaseClient';
 
 function App() {
+
   // state for books
   const [books, setBooks] = useState([]);
   // add loading state
@@ -56,6 +57,12 @@ function App() {
     try {
       setLoading(true);
       console.log('Fetching books from Supabase...');
+      
+      // Add this debug code at the start of fetchBooks
+      console.log('Supabase client config:', {
+        url: supabase.supabaseUrl,
+        hasKey: !!supabase.supabaseKey
+      });
       
       // first check if we can access any table
       console.log('Testing connection...');
@@ -201,8 +208,9 @@ function App() {
       // refresh books list
       fetchBooks();
     } catch (error) {
-      console.error('Error submitting book:', error.message);
-      alert('There was an error submitting your recommendation. Please try again.');
+      console.error('Error submitting book:', error);
+      console.error('Error details:', JSON.stringify(error, null, 2));
+      alert('Error: ' + error.message);
     } finally {
       setIsSubmitting(false);
     }
