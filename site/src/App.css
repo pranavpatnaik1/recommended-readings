@@ -504,6 +504,10 @@ main {
 }
 
 @media (max-width: 600px) {
+  .close-modal {
+    display: none; /* Hide the X button on mobile */
+  }
+
   /* hide tags and submitted by columns on smaller screens */
   .responsive-hide-sm {
     display: none;
@@ -557,6 +561,10 @@ main {
 }
 
 @media (max-width: 480px) {
+  .close-modal {
+    display: none; /* Hide the X button on mobile */
+  }
+  
   .header h1 {
     font-size: 1.8rem;
   }
