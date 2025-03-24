@@ -40,7 +40,7 @@ function App() {
       .on('postgres_changes', 
         { event: '*', schema: 'public', table: 'books' }, 
         payload => {
-          console.log('Change received!', payload);
+          // console.log('Change received!', payload);
           fetchBooks();
         }
       )
@@ -56,21 +56,21 @@ function App() {
   const fetchBooks = async () => {
     try {
       setLoading(true);
-      console.log('Fetching books from Supabase...');
+      // console.log('Fetching books from Supabase...');
       
       // Add this debug code at the start of fetchBooks
-      console.log('Supabase client config:', {
-        url: supabase.supabaseUrl,
-        hasKey: !!supabase.supabaseKey
-      });
+      // console.log('Supabase client config:', {
+      //   url: supabase.supabaseUrl,
+      //   hasKey: !!supabase.supabaseKey
+      // });
       
       // first check if we can access any table
-      console.log('Testing connection...');
+      // console.log('Testing connection...');
       const { data: testData, error: testError } = await supabase
         .from('books')
         .select('count');
       
-      console.log('Connection test result:', { testData, testError });
+      // console.log('Connection test result:', { testData, testError });
       
       // if there's an error with the test query, it means the table doesn't exist
       if (testError) {
@@ -84,28 +84,28 @@ function App() {
       }
       
       // try getting all books regardless of approval status
-      console.log('Fetching all books (without filter)...');
+      // console.log('Fetching all books (without filter)...');
       const { data: allBooks, error: allBooksError } = await supabase
         .from('books')
         .select('*');
       
-      console.log('All books:', allBooks);
+      // console.log('All books:', allBooks);
       
       if (allBooksError) {
         console.error('Error fetching all books:', allBooksError);
       } else if (allBooks && allBooks.length === 0) {
-        console.log('Your books table exists but is empty. Please add some records.');
+        // console.log('Your books table exists but is empty. Please add some records.');
       } else {
-        console.log(`You have ${allBooks.length} total books, but none might be approved.`);
+        // console.log(`You have ${allBooks.length} total books, but none might be approved.`);
         
         // check if approved column exists
         if (allBooks && allBooks.length > 0) {
           const firstBook = allBooks[0];
-          console.log('First book structure:', firstBook);
+          // console.log('First book structure:', firstBook);
           if ('approved' in firstBook) {
-            console.log('The "approved" column exists.');
+            // console.log('The "approved" column exists.');
           } else {
-            console.log('The "approved" column DOES NOT exist! Available columns:', Object.keys(firstBook));
+            // console.log('The "approved" column DOES NOT exist! Available columns:', Object.keys(firstBook));
           }
         }
       }
@@ -122,14 +122,14 @@ function App() {
         throw error;
       }
       
-      console.log('Fetched approved books:', data);
-      console.log('Number of approved books:', data ? data.length : 0);
+      // console.log('Fetched approved books:', data);
+      // console.log('Number of approved books:', data ? data.length : 0);
       
       if (data) {
         setBooks(data);
       }
     } catch (error) {
-      console.error('Error fetching books:', error.message);
+      // console.error('Error fetching books:', error.message);
       // fallback to local sample data if supabase connection fails
       const initialBooks = [
         { id: 1, title: "To Kill a Mockingbird", author: "Harper Lee", genre: "Classic", notes: "A powerful story about racial injustice", submittedBy: "John Doe" },
@@ -168,7 +168,7 @@ function App() {
         approved: false
       };
       
-      console.log('Submitting book:', submission);
+      // console.log('Submitting book:', submission);
       
       // insert into Supabase
       const { data, error } = await supabase
@@ -181,7 +181,7 @@ function App() {
         throw error;
       }
       
-      console.log('Book submitted successfully:', data);
+      // console.log('Book submitted successfully:', data);
       
       // show notification with fade-in class
       setShowNotification('notification-enter');
